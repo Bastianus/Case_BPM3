@@ -1,5 +1,3 @@
-<p>cursussen works!</p>
-<!--
 <table class='table'>
     <thead>
         <tr>
@@ -10,9 +8,9 @@
     </thead>
     <tbody>
         <tr *ngFor = "let cursus of cursussen">
-            <td>{{cursus.Startdatum}}</td>
+            <td>{{cursus.Startdatum | date:'shortDate'}}</td>
             <td>{{cursus.Duur}}</td>
             <td>{{cursus.Naam}}</td>
         </tr>
     </tbody>
-</table> -->
+</table>

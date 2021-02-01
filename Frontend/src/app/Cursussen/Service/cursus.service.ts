@@ -8,7 +8,7 @@ export class CursusService {
 
   constructor(private http: HttpClient) { }
 
-  Url = "https://localhost:44323/CursusInstanties"
+  Url = "http://localhost:49744/api/Cursus"
 
   GetAllCursussen()
   {
