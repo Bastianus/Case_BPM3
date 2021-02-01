@@ -1,8 +1,5 @@
-﻿using Microsoft.AspNetCore.Cors;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Http;
+﻿using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace Backend
 {
@@ -10,6 +7,14 @@ namespace Backend
     {
         public static void Register(HttpConfiguration config)
         {
+            //Cors
+            var cors = new EnableCorsAttribute(
+                              "*", // allowed websites
+                              "*", // allowed headers
+                              "*"); // allowed methods
+
+            config.EnableCors(cors);
+
             // Web API routes
             config.MapHttpAttributeRoutes();
 

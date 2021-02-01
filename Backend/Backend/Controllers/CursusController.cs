@@ -4,11 +4,9 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Backend.Models;
-using Microsoft.AspNetCore.Cors;
 
 namespace Backend.Controllers
 {
-    [EnableCors]
     public class CursusController : ApiController
     {
         private DbCursussenContext db = new DbCursussenContext();
