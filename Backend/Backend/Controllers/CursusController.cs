@@ -9,7 +9,16 @@ namespace Backend.Controllers
 {
     public class CursusController : ApiController
     {
-        private DbCursussenContext db = new DbCursussenContext();
+
+        private IDbCursussenContext db;
+        public CursusController()
+        {
+            db = new DbCursussenContext();
+        }
+        public CursusController(IDbCursussenContext context)
+        {
+            db = context;
+        }
 
         // GET: api/Cursus
         public IQueryable<CommCursus> GetCursusInstanties()

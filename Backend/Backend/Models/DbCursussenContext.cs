@@ -2,7 +2,7 @@
 
 namespace Backend.Models
 {
-    public class DbCursussenContext : DbContext
+    public class DbCursussenContext : DbContext, IDbCursussenContext
     {
         public DbCursussenContext()
         {

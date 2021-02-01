@@ -229,8 +229,9 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CommCursus.cs" />
     <Compile Include="Models\Cursus.cs" />
-    <Compile Include="Models\DbCursusContext.cs" />
+    <Compile Include="Models\DbCursussenContext.cs" />
     <Compile Include="Models\CursusInstantie.cs" />
+    <Compile Include="Models\IDbCursussenContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
