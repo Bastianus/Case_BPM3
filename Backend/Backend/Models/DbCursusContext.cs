@@ -2,11 +2,11 @@
 
 namespace Backend.Models
 {
-    public class CursussenContext : DbContext
+    public class DbCursussenContext : DbContext
     {
-        public CursussenContext()
+        public DbCursussenContext()
         {
-            Database.SetInitializer<CursussenContext>(new DropCreateDatabaseIfModelChanges<CursussenContext>());
+            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<DbCursussenContext>());
         }
         public DbSet<Cursus> Cursussen { get; set; }
         public DbSet<CursusInstantie> CursusInstanties { get; set; }
