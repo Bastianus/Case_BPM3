@@ -6,7 +6,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{B99C6D99-21A1-45E0-94F0-1E7860C73972}</ProjectGuid>
+    <ProjectGuid>{5CBCAB7E-36EB-4FCA-982E-82574B887318}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Backend.Tests</RootNamespace>
@@ -110,7 +110,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Backend\Backend.csproj">
-      <Project>{0F8DCF2F-4F0F-4F1B-904C-A69A0A661586}</Project>
+      <Project>{49AC1030-1812-40A4-9394-2FD1A5802A65}</Project>
       <Name>Backend</Name>
     </ProjectReference>
   </ItemGroup>
