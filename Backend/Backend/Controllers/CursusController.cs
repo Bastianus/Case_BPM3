@@ -40,7 +40,7 @@ namespace Backend.Controllers
         [ResponseType(typeof(CursusInstantie))]
         public async Task<IHttpActionResult> GetCursusInstantie(int id)
         {
-            CursusInstantie cursusInstantie = await db.CursusInstanties.FindAsync(id);
+            CursusInstantie cursusInstantie = db.CursusInstanties.Where(x => x.Id == id).SingleOrDefault();
             if (cursusInstantie == null)
             {
                 return NotFound();
@@ -66,10 +66,14 @@ namespace Backend.Controllers
                 cursus = db.Cursussen.Where(c => c.Naam == nieuweCursusInstantie.Naam).FirstOrDefault();
             }
 
-            var resultaat = db.CursusInstanties.Add(new CursusInstantie() {Startdatum = nieuweCursusInstantie.Startdatum, CursusId = cursus.Id });
+            var toeTeVoegenInstantie = new CursusInstantie() { Startdatum = nieuweCursusInstantie.Startdatum, CursusId = cursus.Id };
+
+            db.CursusInstanties.Add(toeTeVoegenInstantie);
             await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = resultaat.Id }, resultaat);
+            var nieuweId = db.CursusInstanties.Where(x => x.Startdatum == nieuweCursusInstantie.Startdatum && x.CursusId == cursus.Id).SingleOrDefault().Id;
+
+            return CreatedAtRoute("DefaultApi", new { id = nieuweId }, toeTeVoegenInstantie);
         }
 
         // DELETE: api/Cursus/5
