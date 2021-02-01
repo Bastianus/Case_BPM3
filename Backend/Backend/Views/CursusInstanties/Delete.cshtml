@@ -1,4 +1,4 @@
-﻿@model Backend.Models.AntwoordCursus
+﻿@model Backend.Models.CursusInstantie
 
 @{
     Layout = null;
@@ -14,31 +14,23 @@
 <body>
     <h3>Are you sure you want to delete this?</h3>
     <div>
-        <h4>AntwoordCursus</h4>
+        <h4>CursusInstantie</h4>
         <hr />
         <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Cursus.Naam)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Cursus.Naam)
+            </dd>
+    
             <dt>
                 @Html.DisplayNameFor(model => model.Startdatum)
             </dt>
     
             <dd>
                 @Html.DisplayFor(model => model.Startdatum)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Duur)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Duur)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Naam)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Naam)
             </dd>
     
         </dl>

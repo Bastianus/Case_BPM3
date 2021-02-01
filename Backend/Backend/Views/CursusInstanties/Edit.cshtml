@@ -1,4 +1,4 @@
-﻿@model Backend.Models.AntwoordCursus
+﻿@model Backend.Models.CursusInstantie
 
 @{
     Layout = null;
@@ -21,7 +21,7 @@
         @Html.AntiForgeryToken()
         
         <div class="form-horizontal">
-            <h4>AntwoordCursus</h4>
+            <h4>CursusInstantie</h4>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.Id)
@@ -35,18 +35,10 @@
             </div>
     
             <div class="form-group">
-                @Html.LabelFor(model => model.Duur, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.CursusId, "CursusId", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Duur, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Duur, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.Naam, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Naam, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Naam, "", new { @class = "text-danger" })
+                    @Html.DropDownList("CursusId", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.CursusId, "", new { @class = "text-danger" })
                 </div>
             </div>
     

@@ -161,7 +161,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="Controllers\CursussenController.cs" />
+    <Compile Include="Controllers\CursusInstantiesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -171,8 +171,23 @@
     <Compile Include="Migrations\202102011241344_seed_added.Designer.cs">
       <DependentUpon>202102011241344_seed_added.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202102011251031_bigger_seed.cs" />
+    <Compile Include="Migrations\202102011251031_bigger_seed.Designer.cs">
+      <DependentUpon>202102011251031_bigger_seed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102011311461_antwoord-uit-db.cs" />
+    <Compile Include="Migrations\202102011311461_antwoord-uit-db.Designer.cs">
+      <DependentUpon>202102011311461_antwoord-uit-db.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102011317064_database-policy.cs" />
+    <Compile Include="Migrations\202102011317064_database-policy.Designer.cs">
+      <DependentUpon>202102011317064_database-policy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102011319271_nog-onsubtielere-databasesetting.cs" />
+    <Compile Include="Migrations\202102011319271_nog-onsubtielere-databasesetting.Designer.cs">
+      <DependentUpon>202102011319271_nog-onsubtielere-databasesetting.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\AntwoordCursus.cs" />
     <Compile Include="Models\Cursus.cs" />
     <Compile Include="Models\CursussenContext.cs" />
     <Compile Include="Models\CursusInstantie.cs" />
@@ -228,11 +243,11 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Cursussen\Create.cshtml" />
-    <Content Include="Views\Cursussen\Delete.cshtml" />
-    <Content Include="Views\Cursussen\Details.cshtml" />
-    <Content Include="Views\Cursussen\Edit.cshtml" />
-    <Content Include="Views\Cursussen\Index.cshtml" />
+    <Content Include="Views\CursusInstanties\Create.cshtml" />
+    <Content Include="Views\CursusInstanties\Delete.cshtml" />
+    <Content Include="Views\CursusInstanties\Details.cshtml" />
+    <Content Include="Views\CursusInstanties\Edit.cshtml" />
+    <Content Include="Views\CursusInstanties\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -269,6 +284,18 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202102011241344_seed_added.resx">
       <DependentUpon>202102011241344_seed_added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102011251031_bigger_seed.resx">
+      <DependentUpon>202102011251031_bigger_seed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102011311461_antwoord-uit-db.resx">
+      <DependentUpon>202102011311461_antwoord-uit-db.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102011317064_database-policy.resx">
+      <DependentUpon>202102011317064_database-policy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102011319271_nog-onsubtielere-databasesetting.resx">
+      <DependentUpon>202102011319271_nog-onsubtielere-databasesetting.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
