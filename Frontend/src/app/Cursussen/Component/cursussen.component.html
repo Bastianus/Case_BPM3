@@ -8,7 +8,7 @@
     </thead>
     <tbody>
         <tr *ngFor = "let cursus of cursussen">
-            <td>{{cursus.Startdatum | date:'shortDate'}}</td>
+            <td>{{cursus.Startdatum | date:'dd/MM/yyyy'}}</td>
             <td>{{cursus.Duur}}</td>
             <td>{{cursus.Naam}}</td>
         </tr>
