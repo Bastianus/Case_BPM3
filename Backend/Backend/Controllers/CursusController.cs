@@ -54,6 +54,9 @@ namespace Backend.Controllers
         [ResponseType(typeof(CommCursus))]
         public async Task<IHttpActionResult> PostCursusInstantie(CommCursus nieuweCursusInstantie)
         {
+            bool cursusWasOnbekend = false;
+            bool instantieWasOnbekend = false;
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -62,19 +65,24 @@ namespace Backend.Controllers
 
             if(cursus == null) // de cursus bestaat nog niet
             {
+                cursusWasOnbekend = true;
                 db.Cursussen.Add(new Cursus { Duur = nieuweCursusInstantie.Duur, Naam = nieuweCursusInstantie.Naam });
                 await db.SaveChangesAsync();
                 cursus = db.Cursussen.Where(c => c.Naam == nieuweCursusInstantie.Naam).FirstOrDefault();
             }
 
-            var toeTeVoegenInstantie = new CursusInstantie() { Startdatum = nieuweCursusInstantie.Startdatum, CursusId = cursus.Id };
+            var instantie = db.CursusInstanties.Where(ci => ci.Startdatum == nieuweCursusInstantie.Startdatum && ci.CursusId == cursus.Id).FirstOrDefault();
 
-            db.CursusInstanties.Add(toeTeVoegenInstantie);
-            await db.SaveChangesAsync();
+            if(instantie == null) // de cursus instantie bestaat nog niet
+            {
+                instantieWasOnbekend = true;
+                instantie = new CursusInstantie() { Startdatum = nieuweCursusInstantie.Startdatum, CursusId = cursus.Id };
 
-            var nieuweId = db.CursusInstanties.Where(x => x.Startdatum == nieuweCursusInstantie.Startdatum && x.CursusId == cursus.Id).SingleOrDefault().Id;
+                db.CursusInstanties.Add(instantie);
+                await db.SaveChangesAsync();
+            }            
 
-            return CreatedAtRoute("DefaultApi", new { id = nieuweId }, toeTeVoegenInstantie);
+            return CreatedAtRoute("DefaultApi", new { CursusWasOnbekend = cursusWasOnbekend, InstantieWasOnbekend = instantieWasOnbekend }, instantie);
         }
 
         // DELETE: api/Cursus/5

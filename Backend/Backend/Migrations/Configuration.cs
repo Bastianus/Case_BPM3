@@ -15,8 +15,8 @@
         protected override void Seed(Backend.Models.DbCursussenContext context)
         {
             context.Cursussen.AddOrUpdate(c => c.Id,
-                new Models.Cursus() { Id = 1, Naam = "test cursus", Duur = 5 },
-                new Models.Cursus() { Id = 2, Naam = "tweede test cursus", Duur = 3 }
+                new Models.Cursus() { Id = 1, Naam = "test cursus", Duur = "5 dagen" },
+                new Models.Cursus() { Id = 2, Naam = "tweede test cursus", Duur = "3 dagen" }
                 );
             context.CursusInstanties.AddOrUpdate(ci => ci.Id,
                 new Models.CursusInstantie() { Startdatum = new DateTime(2021, 2, 1), CursusId = 1 },

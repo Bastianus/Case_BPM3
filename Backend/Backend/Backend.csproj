@@ -225,6 +225,10 @@
     <Compile Include="Migrations\202102011511474_initial.designer.cs">
       <DependentUpon>202102011511474_initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202102021215014_duur_naar_string.cs" />
+    <Compile Include="Migrations\202102021215014_duur_naar_string.Designer.cs">
+      <DependentUpon>202102021215014_duur_naar_string.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CommCursus.cs" />
     <Compile Include="Models\Cursus.cs" />
@@ -319,6 +323,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202102011511474_initial.resx">
       <DependentUpon>202102011511474_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102021215014_duur_naar_string.resx">
+      <DependentUpon>202102021215014_duur_naar_string.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

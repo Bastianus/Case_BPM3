@@ -40,11 +40,11 @@ namespace Backend.Tests.Controllers
             // arrange     
             var verwachteAntwoorden = new List<CommCursus>()
             {
-                new CommCursus(){ Naam = "test cursus 1", Duur = 3, Startdatum = new DateTime(2020,5,18)},
-                new CommCursus(){ Naam = "test cursus 1", Duur = 3, Startdatum = new DateTime(2021,4,1)},
-                new CommCursus(){ Naam = "test cursus 2", Duur = 5, Startdatum = new DateTime(2020,5,17)},
-                new CommCursus(){ Naam = "test cursus 2", Duur = 5, Startdatum = new DateTime(2020,11,2)},
-                new CommCursus(){ Naam = "test cursus 2", Duur = 5, Startdatum = new DateTime(2019,3,30)},
+                new CommCursus(){ Naam = "test cursus 1", Duur = "3 dagen", Startdatum = new DateTime(2020,5,18)},
+                new CommCursus(){ Naam = "test cursus 1", Duur = "3 dagen", Startdatum = new DateTime(2021,4,1)},
+                new CommCursus(){ Naam = "test cursus 2", Duur = "5 dagen", Startdatum = new DateTime(2020,5,17)},
+                new CommCursus(){ Naam = "test cursus 2", Duur = "5 dagen", Startdatum = new DateTime(2020,11,2)},
+                new CommCursus(){ Naam = "test cursus 2", Duur = "5 dagen", Startdatum = new DateTime(2019,3,30)},
             };
 
             //act
@@ -65,11 +65,11 @@ namespace Backend.Tests.Controllers
             //arrange
             var verwachteAntwoorden = new List<CommCursus>()
             {
-                new CommCursus(){ Naam = "test cursus 2", Duur = 5, Startdatum = new DateTime(2019,3,30)},
-                new CommCursus(){ Naam = "test cursus 2", Duur = 5, Startdatum = new DateTime(2020,5,17)},
-                new CommCursus(){ Naam = "test cursus 1", Duur = 3, Startdatum = new DateTime(2020,5,18)},
-                new CommCursus(){ Naam = "test cursus 2", Duur = 5, Startdatum = new DateTime(2020,11,2)},
-                new CommCursus(){ Naam = "test cursus 1", Duur = 3, Startdatum = new DateTime(2021,4,1)}
+                new CommCursus(){ Naam = "test cursus 2", Duur = "5 dagen", Startdatum = new DateTime(2019,3,30)},
+                new CommCursus(){ Naam = "test cursus 2", Duur = "5 dagen", Startdatum = new DateTime(2020,5,17)},
+                new CommCursus(){ Naam = "test cursus 1", Duur = "3 dagen", Startdatum = new DateTime(2020,5,18)},
+                new CommCursus(){ Naam = "test cursus 2", Duur = "5 dagen", Startdatum = new DateTime(2020,11,2)},
+                new CommCursus(){ Naam = "test cursus 1", Duur = "3 dagen", Startdatum = new DateTime(2021,4,1)}
             };
 
             //act
@@ -117,7 +117,7 @@ namespace Backend.Tests.Controllers
             var tePostenCursus = new CommCursus()
             {
                 Naam = "test cursus 2",
-                Duur = 5,
+                Duur = "5 dagen",
                 Startdatum = new DateTime(2020, 6, 3)
             };
 
@@ -136,8 +136,8 @@ namespace Backend.Tests.Controllers
         {
             return new List<Cursus>()
             {
-                new Cursus(){ Id = 67, Naam = "test cursus 1", Duur = 3},
-                new Cursus(){ Id = 118, Naam = "test cursus 2", Duur = 5}
+                new Cursus(){ Id = 67, Naam = "test cursus 1", Duur = "3 dagen"},
+                new Cursus(){ Id = 118, Naam = "test cursus 2", Duur = "5 dagen"}
             };
         }
 

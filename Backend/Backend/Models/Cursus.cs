@@ -6,7 +6,7 @@ namespace Backend.Models
     {
         public int Id { get; set; }
         public string Naam { get; set; }
-        public int Duur { get; set; }
+        public string Duur { get; set; }
         public virtual List<CursusInstantie> CursusInstanties { get; set; }
     }
 }
