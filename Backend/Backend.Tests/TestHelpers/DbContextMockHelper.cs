@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 
-namespace Backend.Tests.Mocks
+namespace Backend.Tests.TestHelpers
 {
-    public static class DbContextMock
+    public static class DbContextMockHelper
     {
         public static DbSet<T> GetQueryableMockDbSet<T>(List<T> sourceList) where T : class
         {

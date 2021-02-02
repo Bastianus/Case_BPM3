@@ -26,6 +26,7 @@ namespace Backend.Controllers
             var antwoord = from c in db.Cursussen
                            join ci in db.CursusInstanties
                                 on c.Id equals ci.CursusId
+                            orderby ci.Startdatum ascending
                            select new CommCursus()
                            {
                                Naam = c.Naam,
