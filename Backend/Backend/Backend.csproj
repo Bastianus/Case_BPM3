@@ -229,7 +229,16 @@
     <Compile Include="Migrations\202102021215014_duur_naar_string.Designer.cs">
       <DependentUpon>202102021215014_duur_naar_string.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202102021405064_database-legen.cs" />
+    <Compile Include="Migrations\202102021405064_database-legen.Designer.cs">
+      <DependentUpon>202102021405064_database-legen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102021412305_database-legen-2.cs" />
+    <Compile Include="Migrations\202102021412305_database-legen-2.Designer.cs">
+      <DependentUpon>202102021412305_database-legen-2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AntwoordOpPostCursus.cs" />
     <Compile Include="Models\CommCursus.cs" />
     <Compile Include="Models\Cursus.cs" />
     <Compile Include="Models\DbCursussenContext.cs" />
@@ -326,6 +335,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202102021215014_duur_naar_string.resx">
       <DependentUpon>202102021215014_duur_naar_string.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102021405064_database-legen.resx">
+      <DependentUpon>202102021405064_database-legen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102021412305_database-legen-2.resx">
+      <DependentUpon>202102021412305_database-legen-2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

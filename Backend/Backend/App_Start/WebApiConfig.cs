@@ -13,7 +13,7 @@ namespace Backend
                               "*", // allowed headers
                               "*"); // allowed methods
 
-            config.EnableCors(cors);
+            config.EnableCors();
 
             // Web API routes
             config.MapHttpAttributeRoutes();

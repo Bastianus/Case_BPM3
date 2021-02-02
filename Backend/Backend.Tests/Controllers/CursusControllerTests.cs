@@ -121,10 +121,14 @@ namespace Backend.Tests.Controllers
                 Startdatum = new DateTime(2020, 6, 3)
             };
 
-            var verwachtAntwoord = new CursusInstantie() { Startdatum = new DateTime(2020,6,3), CursusId=118};
+            var verwachtAntwoord = new AntwoordOpPostCursus() { Startdatum = new DateTime(2020,6,3), 
+                                                                Naam = "test cursus 2" , 
+                                                                Duur = "5 dagen", 
+                                                                CursusWasOnbekend = false, 
+                                                                InstantieWasOnbekend = true};
 
             //act
-            var antwoord = _sut.PostCursusInstantie(tePostenCursus).Result as CreatedAtRouteNegotiatedContentResult<CursusInstantie>;
+            var antwoord = _sut.PostCursusInstantie(tePostenCursus).Result as CreatedAtRouteNegotiatedContentResult<AntwoordOpPostCursus>;
 
             //assert
             antwoord.Content.ShouldNotBeNull();
@@ -158,6 +162,15 @@ namespace Backend.Tests.Controllers
             antwoord.CursusId.ShouldBe(verwacht.CursusId);
             antwoord.Startdatum.ShouldBe(verwacht.Startdatum);
             antwoord.Id.ShouldBe(verwacht.Id);
+        }
+
+        private void CompareAntwoorden(AntwoordOpPostCursus antwoord, AntwoordOpPostCursus verwacht)
+        {
+            antwoord.Naam.ShouldBe(verwacht.Naam);
+            antwoord.Duur.ShouldBe(verwacht.Duur);
+            antwoord.Startdatum.ShouldBe(verwacht.Startdatum);
+            antwoord.CursusWasOnbekend.ShouldBe(verwacht.CursusWasOnbekend);
+            antwoord.InstantieWasOnbekend.ShouldBe(verwacht.InstantieWasOnbekend);
         }
 
         private void CompareAntwoorden(CommCursus antwoord, CommCursus verwacht)

@@ -2,11 +2,13 @@
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using Backend.Models;
 
 namespace Backend.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class CursusController : ApiController
     {
 
@@ -80,9 +82,13 @@ namespace Backend.Controllers
 
                 db.CursusInstanties.Add(instantie);
                 await db.SaveChangesAsync();
-            }            
+            }
 
-            return CreatedAtRoute("DefaultApi", new { CursusWasOnbekend = cursusWasOnbekend, InstantieWasOnbekend = instantieWasOnbekend }, instantie);
+            var id = db.CursusInstanties.Where(x => x.Startdatum == nieuweCursusInstantie.Startdatum && x.CursusId == cursus.Id).FirstOrDefault().Id;
+
+            var antwoord = new AntwoordOpPostCursus() { Naam = cursus.Naam, Duur = cursus.Duur, Startdatum = instantie.Startdatum, CursusWasOnbekend = cursusWasOnbekend, InstantieWasOnbekend = instantieWasOnbekend };
+
+            return CreatedAtRoute("DefaultApi", new { id = id }, antwoord);
         }
 
         // DELETE: api/Cursus/5
