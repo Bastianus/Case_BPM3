@@ -7,11 +7,13 @@ import { CursussenComponent } from './Cursussen/Component/cursussen.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CursusService } from './Cursussen/Service/cursus.service';
 import { HttpClientModule } from '@angular/common/http';
+import { BestandToevoegenComponent } from './Toevoegen/Component/bestand-toevoegen.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CursussenComponent
+    CursussenComponent,
+    BestandToevoegenComponent
   ],
   imports: [
     BrowserModule,

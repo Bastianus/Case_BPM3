@@ -1,6 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CursusService} from '../Service/cursus.service';
-import {Cursus} from '../Model/Cursus'
 
 @Component({
   selector: 'app-cursussen',
