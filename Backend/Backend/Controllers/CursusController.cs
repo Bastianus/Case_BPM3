@@ -2,13 +2,12 @@
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
-using System.Web.Http.Cors;
+
 using System.Web.Http.Description;
 using Backend.Models;
 
 namespace Backend.Controllers
 {
-    //[EnableCors(origins: "*", headers: "*", methods: "*")]
     public class CursusController : ApiController
     {
 
