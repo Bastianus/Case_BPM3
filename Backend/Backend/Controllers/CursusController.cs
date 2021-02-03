@@ -8,7 +8,7 @@ using Backend.Models;
 
 namespace Backend.Controllers
 {
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
+    //[EnableCors(origins: "*", headers: "*", methods: "*")]
     public class CursusController : ApiController
     {
 
