@@ -53,7 +53,7 @@
 
   <!-- tijdens het uploaden-->
   <div class="row"  *ngIf="erWordtGeupload">
-    <p>Er wordt op dit moment geupload!</p>
+    <p class="text-warning">Er wordt op dit moment geupload!</p>
   </div>
 
   <!-- er is geupload-->
@@ -80,13 +80,11 @@
     <table class="table">
       <tbody>
         <tr>
-          <td class="text-success">Er zijn {{AantalCursussenUploaded}} cursussen en {{AantalInstantiesUploaded}} cursusinstanties toegevoegd</td>
-        </tr>
-        <!--
+          <td class="text-success">Er zijn {{AantalCursussenUploaded}} cursussen en {{AantalInstantiesUploaded}} cursusinstanties toegevoegd.</td>
+        </tr>        
         <tr *ngIf = "erWarenDuplicaten">
-          <td class="text-danger">Er zijn {{aantalDuplicaten}} duplicaten tegengekomen</td>
+          <td class="text-danger">Er zijn {{AantalDuplicaten}} duplicaten tegengekomen.</td>
         </tr>  
-        -->
       </tbody>
     </table>
     

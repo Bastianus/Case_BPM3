@@ -15,7 +15,7 @@ export class BestandToevoegenComponent implements OnInit {
   foutmeldingen : string[];
   AantalInstantiesUploaded : number;
   AantalCursussenUploaded : number;
-  AantalDuplicaten : number;
+  AantalDuplicaten : number = 0;
   erZijnFoutmeldingen : boolean = false;
   erZijnGeenFoutmeldingen : boolean = false;
   erIsTenminsteEenTabelGeupload : boolean = false;
@@ -72,6 +72,7 @@ export class BestandToevoegenComponent implements OnInit {
     this.AantalInstantiesUploaded = data[0];
 
     this.AantalDuplicaten = teUploadedenCursussen.length - this.AantalInstantiesUploaded;
+
     if(this.AantalDuplicaten > 0)
     {
       this.erWarenDuplicaten = true;
