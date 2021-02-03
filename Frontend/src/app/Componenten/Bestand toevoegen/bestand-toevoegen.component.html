@@ -80,11 +80,13 @@
     <table class="table">
       <tbody>
         <tr>
-          <td>Aantal instanties die geupload zijn: {{AantalInstantiesUploaded}}</td>        
+          <td class="text-success">Er zijn {{AantalCursussenUploaded}} cursussen en {{AantalInstantiesUploaded}} cursusinstanties toegevoegd</td>
         </tr>
-        <tr>
-          <td>Aantal cursussen die geupload zijn: {{AantalCursussenUploaded}}</td>
-        </tr>
+        <!--
+        <tr *ngIf = "erWarenDuplicaten">
+          <td class="text-danger">Er zijn {{aantalDuplicaten}} duplicaten tegengekomen</td>
+        </tr>  
+        -->
       </tbody>
     </table>
     

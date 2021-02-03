@@ -71,6 +71,12 @@ export class BestandToevoegenComponent implements OnInit {
     this.AantalCursussenUploaded = data[1];
     this.AantalInstantiesUploaded = data[0];
 
+    this.AantalDuplicaten = teUploadedenCursussen.length - this.AantalInstantiesUploaded;
+    if(this.AantalDuplicaten > 0)
+    {
+      this.erWarenDuplicaten = true;
+    }
+
     this.uploadedCursussen = answer[1];    
     if(this.uploadedCursussen.length>0)
     {
