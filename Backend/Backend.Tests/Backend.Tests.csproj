@@ -142,10 +142,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\CursusControllerTests.cs" />
+    <Compile Include="Controllers\CursusRepositoryTests.cs" />
     <Compile Include="TestHelpers\DbContextMockHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
+    <Compile Include="TestHelpers\FakeDbAsyncEnumerable.cs" />
+    <Compile Include="TestHelpers\FakeDbAsyncEnumerator.cs" />
+    <Compile Include="TestHelpers\FakeDbAsyncQueryProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />

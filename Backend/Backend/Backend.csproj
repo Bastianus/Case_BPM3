@@ -257,6 +257,8 @@
     <Compile Include="Models\CursusInstantie.cs" />
     <Compile Include="Models\IDbCursussenContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repos\CursusRepository.cs" />
+    <Compile Include="Repos\ICursusRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />

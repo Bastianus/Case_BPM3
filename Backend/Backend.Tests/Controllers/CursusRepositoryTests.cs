@@ -1,37 +1,62 @@
-﻿using Backend.Controllers;
-using Backend.Models;
+﻿using Backend.Models;
+using Backend.Repos;
 using Backend.Tests.TestHelpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Shouldly;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
-using System.Web.Http.Results;
 
 namespace Backend.Tests.Controllers
 {
     [TestClass]
-    public class CursusControllerTests
+    public class CursusRepositoryTests
     {
-        private CursusController _sut;
-        private Mock<IDbCursussenContext> _context;
-        public CursusControllerTests()
-        {            
-        }
+        private ICursusRepository _sut;
 
         [TestInitialize]
         public void Init()
         {
-            _context = new Mock<IDbCursussenContext>();
+            var fakeCursussen = new FakeDbAsyncEnumerable<Cursus>(GetCursussen());
 
-            var fakeCursusInstanties = GetCursusInstanties();
-            var fakeCursussen = GetCursussen();
+            var mockCursus = new Mock<DbSet<Cursus>>();
+            mockCursus.As<IQueryable>()
+                .Setup(m => m.Provider)
+                .Returns(fakeCursussen.AsQueryable().Provider);
+            mockCursus.As<IQueryable>()
+                .Setup(m => m.Expression)
+                .Returns(fakeCursussen.AsQueryable().Expression);
+            mockCursus.As<IQueryable>()
+                .Setup(m => m.ElementType)
+                .Returns(fakeCursussen.AsQueryable().ElementType);
+            mockCursus.As<IDbAsyncEnumerable>()
+                .Setup(m => m.GetAsyncEnumerator())
+                .Returns(((IDbAsyncEnumerable<Cursus>)fakeCursussen).GetAsyncEnumerator());
 
-            _context.Setup(x => x.CursusInstanties).Returns(DbContextMockHelper.GetQueryableMockDbSet(fakeCursusInstanties));
-            _context.Setup(x => x.Cursussen).Returns(DbContextMockHelper.GetQueryableMockDbSet(fakeCursussen));
- 
-            _sut = new CursusController(_context.Object) { };
+            var fakeCursusInstanties = new FakeDbAsyncEnumerable<CursusInstantie>(GetCursusInstanties());
+
+            var mockCursusInstanties = new Mock<DbSet<CursusInstantie>>();
+            mockCursusInstanties.As<IQueryable>()
+                .Setup(m => m.Provider)
+                .Returns(fakeCursusInstanties.AsQueryable().Provider);
+            mockCursusInstanties.As<IQueryable>()
+                .Setup(m => m.Expression)
+                .Returns(fakeCursusInstanties.AsQueryable().Expression);
+            mockCursusInstanties.As<IQueryable>()
+                .Setup(m => m.ElementType)
+                .Returns(fakeCursusInstanties.AsQueryable().ElementType);
+            mockCursusInstanties.As<IDbAsyncEnumerable>()
+                .Setup(m => m.GetAsyncEnumerator())
+                .Returns(((IDbAsyncEnumerable<CursusInstantie>)fakeCursusInstanties).GetAsyncEnumerator());
+
+            var context = new Mock<IDbCursussenContext>();
+            context.Setup(m => m.Cursussen).Returns(mockCursus.Object);
+            context.Setup(m => m.CursusInstanties).Returns(mockCursusInstanties.Object);
+
+            _sut = new CursusRepository(context.Object) { };
         }
 
         [TestMethod]
@@ -48,8 +73,7 @@ namespace Backend.Tests.Controllers
             };
 
             //act
-            var antwoord = _sut.GetCursusInstanties().ToList();
-            
+            var antwoord = _sut.GetAllCursusInstanties().Result;            
 
             //assert
             antwoord.ShouldNotBeNull();
@@ -73,41 +97,13 @@ namespace Backend.Tests.Controllers
             };
 
             //act
-            var antwoord = _sut.GetCursusInstanties().ToList();
+            var antwoord = _sut.GetAllCursusInstanties().Result;
 
             //assert
             for(int i=0; i < verwachteAntwoorden.Count(); i++)
             {
                 CompareAntwoorden(antwoord[i], verwachteAntwoorden[i]);
             }
-        }
-
-        [TestMethod]
-        public void CursusController_GetCursusInstantie_id_GeeftCorrectAntwoord()
-        {
-            //arrange
-            var startdatum = new DateTime(2020, 5, 18);
-            var bijbehorendId = 241;
-            var verwachtAntwoord = new CursusInstantie() { Id = bijbehorendId, Startdatum = startdatum, CursusId = 67 };
-
-            //act
-            var antwoord = _sut.GetCursusInstantie(bijbehorendId).Result as OkNegotiatedContentResult<CursusInstantie>;
-
-            //assert
-            antwoord.Content.ShouldNotBeNull();
-
-            CompareAntwoorden(antwoord.Content, verwachtAntwoord);
-        }
-
-        [TestMethod]
-        public void CursusController_GetCursusInstantie_id_VanOnbekendIdGeeftNotFoundResult()
-        {
-            //act
-            var antwoord = _sut.GetCursusInstantie(243).Result as NotFoundResult;
-
-            //assert
-            antwoord.ShouldNotBeNull();
-
         }
 
         [TestMethod]
@@ -128,12 +124,12 @@ namespace Backend.Tests.Controllers
                                                                 InstantieWasOnbekend = true};
 
             //act
-            var antwoord = _sut.PostCursusInstantie(tePostenCursus).Result as CreatedAtRouteNegotiatedContentResult<AntwoordOpPostCursus>;
+            var antwoord = _sut.PostCursusInstantie(tePostenCursus).Result;
 
             //assert
-            antwoord.Content.ShouldNotBeNull();
+            antwoord.ShouldNotBeNull();
 
-            CompareAntwoorden(antwoord.Content, verwachtAntwoord);
+            CompareAntwoorden(antwoord, verwachtAntwoord);
         }     
 
         private List<Cursus> GetCursussen()
@@ -155,13 +151,6 @@ namespace Backend.Tests.Controllers
                 new CursusInstantie(){ Id = 241, Startdatum = new DateTime(2020,5,18), CursusId = 67},
                 new CursusInstantie(){ Id = 976, Startdatum = new DateTime(2021,4,1), CursusId = 67 }
             };
-        }
-
-        private void CompareAntwoorden(CursusInstantie antwoord, CursusInstantie verwacht)
-        {
-            antwoord.CursusId.ShouldBe(verwacht.CursusId);
-            antwoord.Startdatum.ShouldBe(verwacht.Startdatum);
-            antwoord.Id.ShouldBe(verwacht.Id);
         }
 
         private void CompareAntwoorden(AntwoordOpPostCursus antwoord, AntwoordOpPostCursus verwacht)
