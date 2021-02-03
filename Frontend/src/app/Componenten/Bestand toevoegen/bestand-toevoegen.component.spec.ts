@@ -1,4 +1,9 @@
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Cursus } from 'src/app/Models/Cursus';
+import { CursusParserService } from 'src/app/Services/cursus-parser.service';
+import { CursusService } from 'src/app/Services/cursus.service';
+import { FoutmeldingenService } from 'src/app/Services/foutmeldingen.service';
 import { BestandToevoegenComponent } from './bestand-toevoegen.component';
 
 describe('BestandToevoegenComponent', () => {
@@ -7,8 +12,9 @@ describe('BestandToevoegenComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ FileReader],
-      declarations: [ BestandToevoegenComponent ]
+      imports: [HttpClientModule],
+      declarations: [ BestandToevoegenComponent ],
+      providers: []
     })
     .compileComponents();
   }));

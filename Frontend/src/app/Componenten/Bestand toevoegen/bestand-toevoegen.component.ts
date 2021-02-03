@@ -28,7 +28,7 @@ export class BestandToevoegenComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  
   bestandGekozen(ruwBestand)
   {
     this.erIsGeupload = false;
@@ -38,7 +38,7 @@ export class BestandToevoegenComponent implements OnInit {
     
     this.bestand = ruwBestand.target.files[0];
 
-    this.bestandNakijken(this.bestand, fileReader)
+    this.bestandNakijken(fileReader)
 
     fileReader.readAsText(this.bestand)
   }
@@ -78,7 +78,7 @@ export class BestandToevoegenComponent implements OnInit {
     }
   }
 
-  bestandNakijken(e: any, fileReader : FileReader)
+  bestandNakijken(fileReader : FileReader)
   {
     let rawBestandCursusArray : Cursus[] = new Array<Cursus>();
 
