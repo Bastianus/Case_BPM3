@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CursusService } from 'src/app/Cursussen/Service/cursus.service';
-import { Cursus } from '../Model/Cursus'
-import { CursusParserService } from '../Service/cursus-parser.service';
+import { CursusService } from 'src/app/Services/cursus.service';
+import { Cursus } from '../../Models/Cursus'
+import { CursusParserService } from '../../Services/cursus-parser.service';
 
 @Component({
   selector: 'app-bestand-toevoegen',
@@ -17,8 +17,12 @@ export class BestandToevoegenComponent implements OnInit {
   AantalCursussenUploaded : number;
   AantalDuplicaten : number;
   erZijnFoutmeldingen : boolean = false;
+  erZijnGeenFoutmeldingen : boolean = false;
+  erIsTenminsteEenTabelGeupload : boolean = false;
   erWordtGeupload : boolean = false;
+  erIsGeupload : boolean = false;
   erWarenDuplicaten : boolean = false;
+
   constructor(private parserService: CursusParserService,
               private cursusService: CursusService) { }
 
@@ -27,6 +31,9 @@ export class BestandToevoegenComponent implements OnInit {
 
   bestandGekozen(ruwBestand)
   {
+    this.erIsGeupload = false;
+    this.erWordtGeupload = false;
+
     let fileReader = new FileReader();
     
     this.bestand = ruwBestand.target.files[0];
@@ -36,17 +43,39 @@ export class BestandToevoegenComponent implements OnInit {
     fileReader.readAsText(this.bestand)
   }
 
-  uploadDocument()
+  async uploadDocument()
   {
-    //resetten van de tabel met de geuploade cursussen
+    let teUploadedenCursussen = this.bestandCursussen;
+
+    this.erZijnFoutmeldingen = false;
+    this.erZijnGeenFoutmeldingen = false;
+    this.erIsGeupload = false;
+    this.erWordtGeupload = true;
+    this.erIsTenminsteEenTabelGeupload = false;
+
+    //resetten van de tabellen
     this.uploadedCursussen = new Array<Cursus>();
+    this.bestandCursussen = new Array<Cursus>();
+
     //resetten van de tellers
     this.AantalInstantiesUploaded = 0;
     this.AantalCursussenUploaded = 0;
-    //zorgen dat de mellding dat/wat er geupload wordt, zichtbaar is
-    this.erWordtGeupload = true;
+
     //uploaden, respons geeft de hoeveelheden geuploade cursussen en instanties
-    let answer = this.cursusService.PushCursussen(this.bestandCursussen)
+    let answer = await this.cursusService.PushCursussen(teUploadedenCursussen)
+
+    this.erWordtGeupload = false;
+    this.erIsGeupload = true;
+
+    let data = answer[0];
+    this.AantalCursussenUploaded = data[1];
+    this.AantalInstantiesUploaded = data[0];
+
+    this.uploadedCursussen = answer[1];    
+    if(this.uploadedCursussen.length>0)
+    {
+      this.erIsTenminsteEenTabelGeupload = true;
+    }
   }
 
   bestandNakijken(e: any, fileReader : FileReader)
@@ -76,7 +105,6 @@ export class BestandToevoegenComponent implements OnInit {
 
         if(current instanceof Cursus)
         {
-
           rawBestandCursusArray.push(current);
         }
         else
@@ -87,10 +115,16 @@ export class BestandToevoegenComponent implements OnInit {
 
       if(foutmeldingen.length>0)
       {
+        this.erZijnFoutmeldingen = true;
+        this.erZijnGeenFoutmeldingen = false;
+
         this.foutmeldingen = foutmeldingen;
       }  
       else
       {
+        this.erZijnFoutmeldingen = false;
+        this.erZijnGeenFoutmeldingen = true;
+
         this.bestandCursussen = this.parserService.SortCursusArrayByStartDate(rawBestandCursusArray)
       }
     }      

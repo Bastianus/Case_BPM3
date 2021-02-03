@@ -1,13 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CursussenComponent } from './Cursussen/Component/cursussen.component';
+import { CursussenComponent } from './Componenten/Alle Cursussen/cursussen.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { CursusService } from './Cursussen/Service/cursus.service';
+import { CursusService } from './Services/cursus.service';
 import { HttpClientModule } from '@angular/common/http';
-import { BestandToevoegenComponent } from './Toevoegen/Component/bestand-toevoegen.component';
+import { BestandToevoegenComponent } from './Componenten/Bestand toevoegen/bestand-toevoegen.component';
 
 @NgModule({
   declarations: [

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Cursus, CursusExtended } from '../../Toevoegen/Model/Cursus'
-import { AppSettings } from '../../AppSettings'
+import { Cursus, CursusExtended } from '../Models/Cursus'
+import { AppSettings } from '../AppSettings'
 
 @Injectable({
   providedIn: 'root'
@@ -64,9 +64,9 @@ export class CursusService {
 
   PushCursus(cursus:Cursus) : Promise<CursusExtended> 
   {
-    cursus = this.TransformVoorVerzenden(cursus);
-    console.log(cursus);
-    let promise = this.http.post<CursusExtended>(this.Url, cursus).toPromise();
+    let zendCursus = this.TransformVoorVerzenden(cursus);
+
+    let promise = this.http.post<CursusExtended>(this.Url, zendCursus).toPromise();
     return promise;
   }
 
