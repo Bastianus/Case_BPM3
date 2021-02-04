@@ -7,12 +7,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CursusService } from './Services/cursus.service';
 import { HttpClientModule } from '@angular/common/http';
 import { BestandToevoegenComponent } from './Componenten/Bestand toevoegen/bestand-toevoegen.component';
+import { WeeknummerComponent } from './Componenten/Weeknummer/weeknummer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CursussenComponent,
-    BestandToevoegenComponent
+    BestandToevoegenComponent,
+    WeeknummerComponent
   ],
   imports: [
     BrowserModule,
