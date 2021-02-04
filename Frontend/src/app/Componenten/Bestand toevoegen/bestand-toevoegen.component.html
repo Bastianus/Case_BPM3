@@ -52,8 +52,8 @@
   </div>
 
   <!-- tijdens het uploaden-->
-  <div class="row"  *ngIf="erWordtGeupload">
-    <p class="text-warning">Er wordt op dit moment geupload!</p>
+  <div class="spinner-border text-info" role="status" *ngIf="erWordtGeupload">
+    <span class="sr-only">Loading...</span>
   </div>
 
   <!-- er is geupload-->

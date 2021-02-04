@@ -8,6 +8,8 @@ import { WeeknummerService } from '../../Services/weeknummer.service'
   styleUrls: ['./weeknummer.component.css']
 })
 export class WeeknummerComponent implements OnInit {
+  aanHetLaden: boolean = false;
+  geladen : boolean = false;
   peilWeeknummer: number;
   peilJaar : number;
   huidigeCursussen : any;
@@ -49,13 +51,19 @@ export class WeeknummerComponent implements OnInit {
     this.peilJaar = this.peilDatum.getFullYear();
   }
 
-  SetCursussen() : void
+  async SetCursussen() : Promise<void>
   {
-    this.cursusService.GetCursussenByWeekEnJaar(this.peilJaar, this.peilWeeknummer).subscribe(
+    this.aanHetLaden = true;
+    this.geladen = false;
+
+    await this.cursusService.GetCursussenByWeekEnJaar(this.peilJaar, this.peilWeeknummer).subscribe(
       data => 
       {
         this.huidigeCursussen = data;
       }
     )
+    
+    this.geladen = true;
+    this.aanHetLaden = false;
   }
 }

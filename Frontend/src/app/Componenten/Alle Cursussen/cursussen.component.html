@@ -1,4 +1,4 @@
-<table class='table'>
+<table class='table' *ngIf="geladen">
     <thead>
         <tr>
             <th scope="col">Start</th>
@@ -14,3 +14,7 @@
         </tr>
     </tbody>
 </table>
+
+<div class="spinner-border text-info" role="status" *ngIf="aanHetLaden">
+    <span class="sr-only">Loading...</span>
+</div>
