@@ -8,7 +8,7 @@ import { WeeknummerComponent } from './Componenten/Weeknummer/weeknummer.compone
 const routes: Routes = [
   { path: 'cursussen', component: CursussenComponent},
   { path: 'toevoegen', component: BestandToevoegenComponent},
-  { path: 'weeknummer', component: WeeknummerComponent}
+  { path: 'weeknummer/:jaar/:weeknummer', component: WeeknummerComponent}
 ];
 
 @NgModule({

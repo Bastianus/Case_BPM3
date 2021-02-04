@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -8,7 +7,7 @@ export class WeeknummerService {
 
   constructor() { }
 
-  Weeknummer(datum : Date) : number
+  BepaalWeeknummer(datum : Date) : number
   {
     let _datum = new Date(Date.UTC(datum.getFullYear(), datum.getMonth(), datum.getDate()));
     // Set to nearest Thursday: current date + 4 - current day number
@@ -20,5 +19,18 @@ export class WeeknummerService {
     var weekNo = Math.ceil(( ( (_datum.getTime() - yearStart.getTime()) / 86400000) + 1)/7);
     // Return array of year and week number
     return weekNo;
+  }
+
+  BepaalDatumByJaarEnWeeknummer(jaar : number, weeknummer : number) : Date
+  {
+    const ticksPerDag = 1000*60*60*24;
+    let d=0;
+    do 
+    {
+      var start = new Date(jaar,0,1+d);
+      d++
+    } while(start.getDay() != 1)
+
+    return new Date(start.getTime()+ticksPerDag*(weeknummer-1)*7);
   }
 }

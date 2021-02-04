@@ -6,10 +6,11 @@
       <form class="md-form">
           <div class="file-field">
               <div class="btn btn-light btn-sm float-left match-size">
-                  <input type="file" (change)="bestandGekozen($event)">
+                  <input type="file" class="align-bottom" (change)="bestandGekozen($event)">
+                  <button type="button" class="btn btn-secondary btn-sm float-right match-size"  (click)="uploadDocument()"><span>Upload bestand</span></button>
               </div>
               <span>
-                  <button type="button" class="btn btn-light btn-sm float-left match-size"  (click)="uploadDocument()"><span>Upload bestand</span></button>
+                  
               </span>
           </div>
       </form>

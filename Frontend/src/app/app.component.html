@@ -15,7 +15,7 @@
         <a class="nav-link" routerLink="/toevoegen" routerLinkActive="active">Bestand toevoegen</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/weeknummer" routerLinkActive="active">Cursussen per week</a>
+        <a class="nav-link" [routerLink]="['/weeknummer',jaar,weeknummer]" routerLinkActive="active">Cursussen per week</a>
       </li>
     </ul>
   </div>

@@ -1,22 +1,27 @@
 <div class="container" *ngIf="geladen">
 
     <div class="row">
-        <h3>Jaar: {{peilJaar}}   weeknummer: {{peilWeeknummer}}</h3>
+        <h3>Weekoverzicht week [{{peilWeeknummer}}] jaar [{{peilJaar}}]</h3>
     </div>
 
-    <div class="row">
 
-        <span class="align-baseline">
-            <form class="md-form">
-                <div>
+    <span class="align-baseline">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm">
                     <button type="button" class="btn btn-light btn-sm float-left match-size"  (click)="WeekTerug()"><span>&lt;- Week terug</span></button>
-
+                </div>
+                <div class="col-sm">
+                    <ejs-datepicker [value]=peilDatum (change)='DatumGekozen($event)' id='datepicker'></ejs-datepicker>
+                </div>
+                <div class="col-sm">
                     <button type="button" class="btn btn-light btn-sm float-right match-size"  (click)="WeekVooruit()"><span>Week vooruit -&gt;</span></button>
                 </div>
-            </form>
-          </span>
+            </div>              
+        </div>               
+    </span>
 
-    </div>
+
 
     <div class="row">
 
@@ -44,5 +49,12 @@
 <div class="spinner-border text-info" role="status" *ngIf="aanHetLaden">
     <span class="sr-only">Loading...</span>
 </div>
+
+<script>
+    $('.datepicker').datepicker({
+  format: 'mm/dd/yyyy',
+  startDate: '-3d'
+})
+</script>
 
 

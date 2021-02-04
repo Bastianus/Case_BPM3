@@ -8,6 +8,7 @@ import { CursusService } from './Services/cursus.service';
 import { HttpClientModule } from '@angular/common/http';
 import { BestandToevoegenComponent } from './Componenten/Bestand toevoegen/bestand-toevoegen.component';
 import { WeeknummerComponent } from './Componenten/Weeknummer/weeknummer.component';
+import { DatePickerModule } from '@syncfusion/ej2-angular-calendars';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { WeeknummerComponent } from './Componenten/Weeknummer/weeknummer.compone
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    DatePickerModule
   ],
   providers: [CursusService],
   bootstrap: [AppComponent]
