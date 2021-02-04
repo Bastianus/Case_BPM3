@@ -149,6 +149,7 @@
     <Compile Include="TestHelpers\FakeDbAsyncEnumerable.cs" />
     <Compile Include="TestHelpers\FakeDbAsyncEnumerator.cs" />
     <Compile Include="TestHelpers\FakeDbAsyncQueryProvider.cs" />
+    <Compile Include="weeknummer\DatumHelperTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
@@ -12,15 +13,18 @@ namespace Backend.Controllers
         private ICursusRepository repo;
         public CursusController()
         {
-               repo = new CursusRepository(new DbCursussenContext());
-        }
-        public CursusController(IDbCursussenContext context)
-        {
-            repo = new CursusRepository(context);
+            var dbContext = new DbCursussenContext();
+            repo = new CursusRepository(dbContext);
         }
 
         // GET: api/Cursus
         public Task<List<CommCursus>> GetCursusInstanties()
+        {
+            return repo.GetAllCursusInstanties();
+        }
+
+        // GET: api/cursus/jaar/weeknummer
+        public Task<List<CommCursus>> GetCursusInstantiesPerWeek(int jaar, int weeknummer)
         {
             return repo.GetAllCursusInstanties();
         }

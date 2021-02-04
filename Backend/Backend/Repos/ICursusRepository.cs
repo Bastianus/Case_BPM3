@@ -8,6 +8,7 @@ namespace Backend.Repos
     public interface ICursusRepository : IDisposable
     {
         Task<List<CommCursus>> GetAllCursusInstanties();
+        Task<List<CommCursus>> GetCursusInstantiesByJaarEnWeeknummer(int jaar, int weeknummer);
         Task<AntwoordOpPostCursus> PostCursusInstantie(CommCursus cursus);
     }
 }

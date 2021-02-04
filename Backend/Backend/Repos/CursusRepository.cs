@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Data.Entity;
 using System.Threading.Tasks;
+using Backend.weeknummer;
 
 namespace Backend.Repos
 {
@@ -21,6 +22,27 @@ namespace Backend.Repos
             var antwoord = from c in db.Cursussen
                            join ci in db.CursusInstanties
                                 on c.Id equals ci.CursusId
+                           orderby ci.Startdatum ascending
+                           select new CommCursus()
+                           {
+                               Naam = c.Naam,
+                               Duur = c.Duur,
+                               Startdatum = ci.Startdatum
+                           };
+
+            return antwoord.ToListAsync();
+        }
+
+        public Task<List<CommCursus>> GetCursusInstantiesByJaarEnWeeknummer(int jaar, int weeknummer)
+        {
+            var startdatum = DatumHelper.EersteDagVanDeWeek(jaar, weeknummer);
+            var einddatum = startdatum.AddDays(7);
+
+            var antwoord = from c in db.Cursussen
+                           join ci in db.CursusInstanties
+                                on c.Id equals ci.CursusId
+                           where ci.Startdatum >= startdatum
+                                 && ci.Startdatum < einddatum
                            orderby ci.Startdatum ascending
                            select new CommCursus()
                            {
