@@ -32,11 +32,11 @@ export class FoutmeldingenService {
             break;
           case "Duur":
             if (i!==2) volgordeFout = true;
-            foutmeldingen = this.CheckDuur(inhoud, foutmeldingen, i);
+            foutmeldingen = this.CheckDuur(inhoud, foutmeldingen, i, teller);
             break;
           case "Startdatum":
             if (i!==3) volgordeFout=true;
-            foutmeldingen = this.CheckDatum(inhoud, foutmeldingen, i);
+            foutmeldingen = this.CheckDatum(inhoud, foutmeldingen, i, teller);
             break;
           default:
             if(beschrijving.length===0)
@@ -63,7 +63,7 @@ export class FoutmeldingenService {
     return foutmeldingen
   }
 
-  CheckDuur(inhoud: string, foutmeldingen : string[], teller : number) : string[]
+  CheckDuur(inhoud: string, foutmeldingen : string[], regel : number,teller : number) : string[]
   {
     let duurDelen = inhoud.split(" ");
     let getalKandidaat = duurDelen[1];
@@ -71,30 +71,30 @@ export class FoutmeldingenService {
 
     if (duurDelen.length !== 3)
     {
-      foutmeldingen.push("De opbouw van de duur \"" + inhoud + "\" van de " + (teller+1) + "e cursusinstantie van het bestand voldoet niet aan de verwachting")
+      foutmeldingen.push("De opbouw van de duur \"" + inhoud + "\" van de " + (regel+1) + "e regel van de " + (teller) + "e cursusinstantie van het bestand voldoet niet aan de verwachting")
     }
     if(!+getalKandidaat)
     {
-      foutmeldingen.push("Het eerste deel van de duur van de " + (teller+1) + "e cursusinstantie van het bestand is : \"" + inhoud +"\" ,niet een getal")
+      foutmeldingen.push("Het eerste deel van de duur van de " + (regel+1) + "e regel van de " + (teller) + "e cursusinstantie van het bestand is : \"" + inhoud +"\" ,niet een getal")
     }
     if(!dagenKandidaat){
-      foutmeldingen.push("De beschrijving van de duur van cursus van de " + (teller+1) + "e cursusinstantie van het bestand ontbreekt.")
+      foutmeldingen.push("De beschrijving van de duur van cursus van de " + (regel+1) + "e regel van de " + (teller) + "e cursusinstantie van het bestand ontbreekt.")
     }
     else if(dagenKandidaat.trim() !== "dagen")
     {
-      foutmeldingen.push(("De beschrijving van de " + (teller+1) + "e cursusinstantie van het bestand is: \"" + inhoud + "\", en niet \"dagen\""))
+      foutmeldingen.push(("De beschrijving van de " + (regel+1) + "e regel van de " + (teller) + "e cursusinstantie van het bestand is: \"" + inhoud + "\", en niet \"dagen\""))
     }
     return foutmeldingen;
   }
 
-  CheckDatum(inhoud : string, foutmeldingen : string[], teller : number) : string[]
+  CheckDatum(inhoud : string, foutmeldingen : string[], regel : number, teller : number) : string[]
   {
     let datum = inhoud;
     let datumDelen = datum.split("/")
 
     if(datumDelen.length != 3)
     {
-      foutmeldingen.push("De startdatum " + datum + "van de " + (teller+1) + "e cursusinstantie van het bestand gebruikt de verkeerde separator en/of heeft niet de juiste hoeveelheid elementen");
+      foutmeldingen.push("De startdatum " + datum + " van de " + (regel+1) + "e regel van de " + (teller) + "e cursusinstantie van het bestand gebruikt de verkeerde separator en/of heeft niet de juiste hoeveelheid elementen");
       return foutmeldingen;
     }
 
@@ -103,30 +103,30 @@ export class FoutmeldingenService {
     let dag = datumDelen[0];
 
     //checken of het wel getallen zijn
-    if(!+jaar) foutmeldingen.push("Jaar " + jaar + " van de " + (teller+1) + "e cursusinstantie van het bestand is niet een getal");
-    if(!+maand) foutmeldingen.push("Maand " + maand + " van de " + (teller+1) + "e cursusinstantie van het bestand is niet een getal");
-    if(!+dag) foutmeldingen.push("Dag " + dag + " van de " + (teller+1) + "e cursusinstantie van het bestand is niet een getal");
+    if(!+jaar) foutmeldingen.push("Jaar " + jaar + " van de " + (regel+1) + "e regel van de " + (teller) + "e cursusinstantie van het bestand is niet een getal");
+    if(!+maand) foutmeldingen.push("Maand " + maand + " van de " + (regel+1) + "e regel van de " + (teller) + "e cursusinstantie van het bestand is niet een getal");
+    if(!+dag) foutmeldingen.push("Dag " + dag + " van de " + (regel+1) + "e regel van de " + (teller) + "e cursusinstantie van het bestand is niet een getal");
 
     //checken of de getallen logisch zijn
       //Voor jaar
-    if(+jaar < 1800 || +jaar > 3000) foutmeldingen.push("Jaar " + jaar + " van de " + (teller+1) + "e cursusinstantie van het bestand is onlogisch");
+    if(+jaar < 1800 || +jaar > 3000) foutmeldingen.push("Jaar " + jaar + " van de " + (regel+1) + "e regel van de " + (teller) + "e cursusinstantie van het bestand is onlogisch");
       //Voor maand
-    if(+maand > 12) foutmeldingen.push("Maand " + maand + " van de " + (teller+1) + "e cursusinstantie van het bestand is onlogisch");
+    if(+maand > 12) foutmeldingen.push("Maand " + maand + " van de " + (regel+1) + "e regel van de " + (teller) + "e cursusinstantie van het bestand is onlogisch");
       //Voor dag
         // is het een maand die 31 dagen kan bevatten
     if([1,3,5,7,8,10,12].find(a=>a===+maand))
     {
-      if(+dag < 1 || +dag > 31) foutmeldingen.push("Dag " + dag + " van de " + (teller+1) + "e cursusinstantie van het bestand is onlogisch");
+      if(+dag < 1 || +dag > 31) foutmeldingen.push("Dag " + dag + " van de " + (regel+1) + "e regel van de " + (teller) + "e cursusinstantie van het bestand is onlogisch");
     }
         //is het februari
     else if (+maand===2)
     {
-      if(+dag < 1 || +dag > 29) foutmeldingen.push("Dag " + dag + " van de " + (teller+1) + "e cursusinstantie van het bestand is onlogisch");
+      if(+dag < 1 || +dag > 29) foutmeldingen.push("Dag " + dag + " van de " + (regel+1) + "e regel van de " + (teller) + "e cursusinstantie van het bestand is onlogisch");
     }
         //Dan is het een maand die 30 dagen kan bevatten
     else
     {
-      if(+dag < 1 || +dag > 30) foutmeldingen.push("Dag " + dag + " van de " + (teller+1) + "e cursusinstantie van het bestand is onlogisch");
+      if(+dag < 1 || +dag > 30) foutmeldingen.push("Dag " + dag + " van de " + (regel+1) + "e regel van de " + (teller) + "e cursusinstantie van het bestand is onlogisch");
     }
 
     return foutmeldingen;
@@ -136,7 +136,7 @@ export class FoutmeldingenService {
   {
     if (hoeveelheidWitregels!==2 && teller !== cursussen.length)
     {
-      foutmeldingen.push("Het aantal witregels klopt niet");
+      foutmeldingen.push("Het aantal witregels in het opgegeven bestand klopt niet");
     }
     return foutmeldingen;
   }
@@ -144,7 +144,7 @@ export class FoutmeldingenService {
   CheckVolgorde(volgordeFout: boolean, foutmeldingen : string[], teller : number): string[]
   {
     if (volgordeFout){
-      foutmeldingen.push("De " + (teller+1) + "e cursusinstantie van het bestand had een volgorde fout in zijn data.");
+      foutmeldingen.push("De " + (teller) + "e cursusinstantie van het bestand had een volgorde fout in zijn data.");
     }
 
     return foutmeldingen;
@@ -157,7 +157,7 @@ export class FoutmeldingenService {
       || cursus.CursusCode.length < 2
       || cursus.Duur.length < 2)
     {
-      foutmeldingen.push("De " + (teller+1) + "e cursusinstantie van het bestand bevatte niet genoeg informatie om een cursus te vullen")
+      foutmeldingen.push("De " + (teller) + "e cursusinstantie van het bestand bevatte niet genoeg informatie om een cursus te vullen")
     }
     return foutmeldingen
   }
