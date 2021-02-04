@@ -13,8 +13,7 @@ namespace Backend.Controllers
         private ICursusRepository repo;
         public CursusController()
         {
-            var dbContext = new DbCursussenContext();
-            repo = new CursusRepository(dbContext);
+            repo = new CursusRepository();
         }
 
         // GET: api/Cursus

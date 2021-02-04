@@ -12,6 +12,11 @@ namespace Backend.Repos
     {
         private IDbCursussenContext db;
 
+        public CursusRepository()
+        {
+            db = new DbCursussenContext();
+        }
+
         public CursusRepository(IDbCursussenContext context)
         {
             db = context;
