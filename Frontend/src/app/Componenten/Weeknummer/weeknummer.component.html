@@ -1,1 +1,44 @@
-<p>weeknummer works!</p>
+<div class="container">
+
+    <div class="row">
+        <h3>Jaar: {{peilJaar}}   weeknummer: {{peilWeeknummer}}</h3>
+    </div>
+
+    <div class="row">
+
+        <span class="align-baseline">
+            <form class="md-form">
+                <div>
+                    <button type="button" class="btn btn-light btn-sm float-left match-size"  (click)="WeekTerug()"><span>&lt;- Week terug</span></button>
+
+                    <button type="button" class="btn btn-light btn-sm float-right match-size"  (click)="WeekVooruit()"><span>Week vooruit -&gt;</span></button>
+                </div>
+            </form>
+          </span>
+
+    </div>
+
+    <div class="row">
+
+        <table class='table'>
+            <thead>
+                <tr>
+                    <th scope="col">Start</th>
+                    <th scope="col">Duur</th>
+                    <th scope="col">Naam</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor = "let cursus of huidigeCursussen">
+                    <td>{{cursus.Startdatum | date:'dd/MM/yyyy'}}</td>
+                    <td>{{cursus.Duur}}</td>
+                    <td>{{cursus.Naam}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
+

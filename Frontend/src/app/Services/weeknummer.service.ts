@@ -6,23 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class WeeknummerService {
 
-  constructor(private http: HttpClient) { }
-
-  GetHuidigeWeeknummer() : number
-  {
-    let huidigeDatum = new Date();
-
-    let huidigeWeeknummer = this.Weeknummer(huidigeDatum);
-
-    return huidigeWeeknummer;
-  }
-
-  GetHuidigJaar() : number
-  {
-    let huidigeDatum = new Date();
-
-    return huidigeDatum.getFullYear();
-  }
+  constructor() { }
 
   Weeknummer(datum : Date) : number
   {

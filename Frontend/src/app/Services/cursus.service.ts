@@ -14,8 +14,14 @@ export class CursusService {
 
   GetAllCursussen()
   {
-    let antwoord = this.http.get(this.Url);
-    return antwoord;
+    return this.http.get(this.Url);
+  }
+
+  GetCursussenByWeekEnJaar(jaar: number, weeknummer : number)
+  {
+     let vraagUrl = this.Url + "?jaar=" + jaar + "&weeknummer=" + weeknummer;
+
+     return this.http.get(vraagUrl)
   }
 
   async PushCursussen(cursussen:Array<Cursus>) : Promise<[number[],Cursus[]]> {
