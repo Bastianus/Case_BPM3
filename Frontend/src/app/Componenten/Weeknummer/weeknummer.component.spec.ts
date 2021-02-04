@@ -1,5 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { WeeknummerComponent } from './weeknummer.component';
 
@@ -7,7 +7,7 @@ describe('WeeknummerComponent', () => {
   let component: WeeknummerComponent;
   let fixture: ComponentFixture<WeeknummerComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [ HttpClientModule ],
       declarations: [ WeeknummerComponent ]

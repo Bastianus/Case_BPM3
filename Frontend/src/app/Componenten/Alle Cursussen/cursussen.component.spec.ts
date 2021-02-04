@@ -1,5 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { CursussenComponent } from './cursussen.component';
 
@@ -7,7 +7,7 @@ describe('CursussenComponent', () => {
   let component: CursussenComponent;
   let fixture: ComponentFixture<CursussenComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule],
       declarations: [ CursussenComponent ]

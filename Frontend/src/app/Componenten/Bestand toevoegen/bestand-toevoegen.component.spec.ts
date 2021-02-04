@@ -1,5 +1,5 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Cursus } from 'src/app/Models/Cursus';
 import { CursusParserService } from 'src/app/Services/cursus-parser.service';
 import { CursusService } from 'src/app/Services/cursus.service';
@@ -10,7 +10,7 @@ describe('BestandToevoegenComponent', () => {
   let component: BestandToevoegenComponent;
   let fixture: ComponentFixture<BestandToevoegenComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule],
       declarations: [ BestandToevoegenComponent ],
