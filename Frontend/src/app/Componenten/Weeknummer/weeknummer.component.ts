@@ -8,12 +8,15 @@ import { WeeknummerService } from '../../Services/weeknummer.service'
 })
 export class WeeknummerComponent implements OnInit {
   huidigeWeeknummer: number;
+  huidigJaar : number;
 
   constructor(private service: WeeknummerService) { }
 
   ngOnInit(): void {
     this.huidigeWeeknummer = this.service.GetHuidigeWeeknummer();
     console.log(this.huidigeWeeknummer)
+    this.huidigJaar = this.service.GetHuidigJaar();
+    console.log(this.huidigJaar)
   }
 
 }
