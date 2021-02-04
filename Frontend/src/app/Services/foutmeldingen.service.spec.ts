@@ -50,7 +50,7 @@ describe('FoutmeldingenService', () => {
 
     expect(antwoord.length).toBe(1);
 
-    expect(antwoord[0]).toBe("De " + (teller+1) + "e cursus had een volgorde fout in zijn data.");
+    expect(antwoord[0]).toBe("De " + (teller+1) + "e cursusinstantie van het bestand had een volgorde fout in zijn data.");
   })
 
   it("CheckDuur moet geen fout geven bij een correcte duur", () => 
@@ -69,7 +69,7 @@ describe('FoutmeldingenService', () => {
     let input = "3 dagen";
     let foutmeldingen = new Array<string>();
     let teller = 0;
-    let verwachtAntwoord = "De opbouw van de duur \"" + input + "\" van de " + (teller+1) + "e cursus voldoet niet aan de verwachting";
+    let verwachtAntwoord = "De opbouw van de duur \"" + input + "\" van de " + (teller+1) + "e cursusinstantie van het bestand voldoet niet aan de verwachting";
 
     let antwoord = service.CheckDuur(input, foutmeldingen, teller);
 
@@ -82,7 +82,7 @@ describe('FoutmeldingenService', () => {
     let input = " drie dagen";
     let foutmeldingen = new Array<string>();
     let teller = 0;
-    let verwachtAntwoord = "Het eerste deel van de duur van de " + (teller+1) + "e cursus is : \"" + input +"\" ,niet een getal";
+    let verwachtAntwoord = "Het eerste deel van de duur van de " + (teller+1) + "e cursusinstantie van het bestand is : \"" + input +"\" ,niet een getal";
 
     let antwoord = service.CheckDuur(input, foutmeldingen, teller);
 
@@ -95,7 +95,7 @@ describe('FoutmeldingenService', () => {
     let input = " 3 ";
     let foutmeldingen = new Array<string>();
     let teller = 0;
-    let verwachtAntwoord = "De beschrijving van de duur van cursus " + (teller+1) + "e cursus ontbreekt.";
+    let verwachtAntwoord = "De beschrijving van de duur van cursus van de " + (teller+1) + "e cursusinstantie van het bestand ontbreekt.";
 
     let antwoord = service.CheckDuur(input, foutmeldingen, teller);
 
@@ -108,7 +108,7 @@ describe('FoutmeldingenService', () => {
     let input = " 3 doggen";
     let foutmeldingen = new Array<string>();
     let teller = 0;
-    let verwachtAntwoord = "De beschrijving van de " + (teller+1) + "e cursus is: \"" + input + "\", en niet \"dagen\"";
+    let verwachtAntwoord = "De beschrijving van de " + (teller+1) + "e cursusinstantie van het bestand is: \"" + input + "\", en niet \"dagen\"";
 
     let antwoord = service.CheckDuur(input, foutmeldingen, teller);
 
@@ -132,7 +132,7 @@ describe('FoutmeldingenService', () => {
     let input = "05-06-2020";
     let foutmeldingen = new Array<string>();
     let teller = 0;
-    let verwachtAntwoord = "De startdatum " + input + "van de " + (teller+1) + "e cursus gebruikt de verkeerde separator en/of heeft niet de juiste hoeveelheid elementen";
+    let verwachtAntwoord = "De startdatum " + input + "van de " + (teller+1) + "e cursusinstantie van het bestand gebruikt de verkeerde separator en/of heeft niet de juiste hoeveelheid elementen";
 
     let antwoord = service.CheckDatum(input, foutmeldingen, teller);
 
@@ -145,7 +145,7 @@ describe('FoutmeldingenService', () => {
     let input = "05/06";
     let foutmeldingen = new Array<string>();
     let teller = 0;
-    let verwachtAntwoord = "De startdatum " + input + "van de " + (teller+1) + "e cursus gebruikt de verkeerde separator en/of heeft niet de juiste hoeveelheid elementen";
+    let verwachtAntwoord = "De startdatum " + input + "van de " + (teller+1) + "e cursusinstantie van het bestand gebruikt de verkeerde separator en/of heeft niet de juiste hoeveelheid elementen";
 
     let antwoord = service.CheckDatum(input, foutmeldingen, teller);
 
@@ -158,7 +158,7 @@ describe('FoutmeldingenService', () => {
     let input = "05/06/ditjaar";
     let foutmeldingen = new Array<string>();
     let teller = 0;
-    let verwachtAntwoord = "Jaar ditjaar van de " + (teller+1) + "e cursus is niet een getal";
+    let verwachtAntwoord = "Jaar ditjaar van de " + (teller+1) + "e cursusinstantie van het bestand is niet een getal";
 
     let antwoord = service.CheckDatum(input, foutmeldingen, teller);
 
@@ -171,7 +171,7 @@ describe('FoutmeldingenService', () => {
     let input = "05/zes/2020";
     let foutmeldingen = new Array<string>();
     let teller = 0;
-    let verwachtAntwoord = "Maand zes van de " + (teller+1) + "e cursus is niet een getal";
+    let verwachtAntwoord = "Maand zes van de " + (teller+1) + "e cursusinstantie van het bestand is niet een getal";
 
     let antwoord = service.CheckDatum(input, foutmeldingen, teller);
 
@@ -184,7 +184,7 @@ describe('FoutmeldingenService', () => {
     let input = "vijf/06/2020";
     let foutmeldingen = new Array<string>();
     let teller = 0;
-    let verwachtAntwoord = "Dag vijf van de " + (teller+1) + "e cursus is niet een getal";
+    let verwachtAntwoord = "Dag vijf van de " + (teller+1) + "e cursusinstantie van het bestand is niet een getal";
 
     let antwoord = service.CheckDatum(input, foutmeldingen, teller);
 
@@ -197,7 +197,7 @@ describe('FoutmeldingenService', () => {
     let input = "05/06/1799";
     let foutmeldingen = new Array<string>();
     let teller = 0;
-    let verwachtAntwoord = "Jaar 1799 van de " + (teller+1) + "e cursus is onlogisch";
+    let verwachtAntwoord = "Jaar 1799 van de " + (teller+1) + "e cursusinstantie van het bestand is onlogisch";
 
     let antwoord = service.CheckDatum(input, foutmeldingen, teller);
 
@@ -210,7 +210,7 @@ describe('FoutmeldingenService', () => {
     let input = "05/06/3001";
     let foutmeldingen = new Array<string>();
     let teller = 0;
-    let verwachtAntwoord = "Jaar 3001 van de " + (teller+1) + "e cursus is onlogisch";
+    let verwachtAntwoord = "Jaar 3001 van de " + (teller+1) + "e cursusinstantie van het bestand is onlogisch";
 
     let antwoord = service.CheckDatum(input, foutmeldingen, teller);
 
@@ -223,7 +223,7 @@ describe('FoutmeldingenService', () => {
     let input = "05/13/2020";
     let foutmeldingen = new Array<string>();
     let teller = 0;
-    let verwachtAntwoord = "Maand 13 van de " + (teller+1) + "e cursus is onlogisch";
+    let verwachtAntwoord = "Maand 13 van de " + (teller+1) + "e cursusinstantie van het bestand is onlogisch";
 
     let antwoord = service.CheckDatum(input, foutmeldingen, teller);
 
@@ -278,7 +278,7 @@ describe('FoutmeldingenService', () => {
 
       let foutmeldingen = new Array<string>();
       let teller = 0;
-      let verwachtAntwoord = "Dag 32 van de " + (teller+1) + "e cursus is onlogisch";
+      let verwachtAntwoord = "Dag 32 van de " + (teller+1) + "e cursusinstantie van het bestand is onlogisch";
 
       let antwoord = service.CheckDatum(input, foutmeldingen, teller);
 
@@ -293,7 +293,7 @@ describe('FoutmeldingenService', () => {
 
       let foutmeldingen = new Array<string>();
       let teller = 0;
-      let verwachtAntwoord = "Dag 31 van de " + (teller+1) + "e cursus is onlogisch";
+      let verwachtAntwoord = "Dag 31 van de " + (teller+1) + "e cursusinstantie van het bestand is onlogisch";
 
       let antwoord = service.CheckDatum(input, foutmeldingen, teller);
 
@@ -305,7 +305,7 @@ describe('FoutmeldingenService', () => {
 
     let foutmeldingen = new Array<string>();
     let teller = 0;
-    let verwachtAntwoord = "Dag 30 van de " + (teller+1) + "e cursus is onlogisch";
+    let verwachtAntwoord = "Dag 30 van de " + (teller+1) + "e cursusinstantie van het bestand is onlogisch";
 
     let antwoord = service.CheckDatum(input, foutmeldingen, teller);
 
@@ -347,7 +347,7 @@ describe('FoutmeldingenService', () => {
     let foutmeldingen = new Array<string>();
     let input = true;
     let teller = 3;
-    let verwachtAntwoord = "De " + (teller+1) + "e cursus had een volgorde fout in zijn data.";
+    let verwachtAntwoord = "De " + (teller+1) + "e cursusinstantie van het bestand had een volgorde fout in zijn data.";
 
     let antwoord = service.CheckVolgorde(input, foutmeldingen, teller);
 
@@ -379,7 +379,7 @@ describe('FoutmeldingenService', () => {
     input.CursusCode = "ABC";
     input.Duur = "een tijdje";
     let teller = 2;
-    let verwachtAntwoord = "De " + (teller+1) + "e cursus bevatte niet genoeg informatie om een cursus te vullen";
+    let verwachtAntwoord = "De " + (teller+1) + "e cursusinstantie van het bestand bevatte niet genoeg informatie om een cursus te vullen";
 
     let antwoord = service.CheckVulling(input,foutmeldingen, teller);
 
