@@ -125,7 +125,14 @@ export class WeeknummerComponent implements OnInit {
   SetWeeknummerEnJaar(): void
   {    
     this.peilWeeknummer = this.weeknummerService.BepaalWeeknummer(this.peilDatum);
+    if(this.peilWeeknummer > 52)
+    {
+      while(this.peilDatum.getMonth()<10) this.peilDatum.setDate(this.peilDatum.getDate() -1)
+    }
     this.peilJaar = this.peilDatum.getFullYear();
+    console.log("peilweeknummer: " + this.peilWeeknummer)
+    console.log("peiljaar: " + this.peilJaar);
+    console.log("peilDatum: " + this.peilDatum)
   }
 
   async SetCursussen() : Promise<void>
