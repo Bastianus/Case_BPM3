@@ -6,7 +6,7 @@ namespace Backend.Models
     {
         public DbCursussenContext()
         {
-            Database.SetInitializer(new DropCreateDatabaseAlways<DbCursussenContext>());
+            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<DbCursussenContext>());
         }
         public DbSet<Cursus> Cursussen { get; set; }
         public DbSet<CursusInstantie> CursusInstanties { get; set; }

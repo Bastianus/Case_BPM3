@@ -8,7 +8,7 @@ namespace Backend
         public static void Register(HttpConfiguration config)
         {
             //Cors
-            var cors = new EnableCorsAttribute(
+            var cors = new EnableCorsAttribute( //ToDO: eventueel nog restricten
                               "*", // allowed websites
                               "*", // allowed headers
                               "*"); // allowed methods
