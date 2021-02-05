@@ -16,12 +16,6 @@ namespace Backend.Controllers
             repo = new CursusRepository();
         }
 
-        // GET: api/Cursus
-        public Task<List<CommCursus>> GetCursusInstanties()
-        {
-            return repo.GetAllCursusInstanties();
-        }
-
         // GET: api/cursus/jaar/weeknummer
         public Task<List<CommCursus>> GetCursusInstantiesPerWeek(int jaar, int weeknummer)
         {

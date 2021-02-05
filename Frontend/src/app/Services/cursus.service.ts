@@ -12,11 +12,6 @@ export class CursusService {
 
   Url = AppSettings.CursusApiUrl;
 
-  GetAllCursussen()
-  {
-    return this.http.get(this.Url);
-  }
-
   GetCursussenByWeekEnJaar(jaar: number, weeknummer : number)
   {
      let vraagUrl = this.Url + "?jaar=" + jaar + "&weeknummer=" + weeknummer;
