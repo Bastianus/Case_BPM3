@@ -17,6 +17,8 @@ export class WeeknummerComponent implements OnInit {
   public peilJaar : number;
   public huidigeCursussen : any;
   public peilDatum: Date = new Date();
+  public manualJaar : number;
+  public manualWeeknummer : number;
 
   constructor(private weeknummerService: WeeknummerService,
               private cursusService : CursusService,
@@ -53,7 +55,7 @@ export class WeeknummerComponent implements OnInit {
     this.SetUrl();
   }
 
-   DatumGekozen(event: any): void
+  DatumGekozen(event: any): void
   {
     let datum = new Date(event.value);
 
@@ -65,6 +67,38 @@ export class WeeknummerComponent implements OnInit {
 
     this.SetUrl();  
   }
+
+  JaarVerandert(event : any) : void
+  {
+    this.manualJaar = event.target.value;
+  }
+
+  WeekVerandert(event:any) : void
+  {
+    let gevraagdWeeknummer = event.target.value;
+
+    let laatsteDagVanDitJaar = new Date(this.manualJaar, 11,31);
+    let maxWeeknummer = this.weeknummerService.BepaalWeeknummer(laatsteDagVanDitJaar);
+
+    if(gevraagdWeeknummer <= maxWeeknummer) this.manualWeeknummer = gevraagdWeeknummer;
+    else document.getElementById('commentaar').innerText = "Dit jaar heeft maar " + maxWeeknummer + " weken."
+  }
+
+  ManualSelect() : void
+  {
+    console.log("Jaar: " + this.manualJaar);
+    console.log("Weeknummer: " + this.manualWeeknummer);
+    this.peilDatum = this.weeknummerService.BepaalDatumByJaarEnWeeknummer(this.manualJaar, this.manualWeeknummer)
+
+    console.log("peildatum: " + this.peilDatum);
+
+    this.SetWeeknummerEnJaar();
+
+    this.SetCursussen();
+
+    this.SetUrl();
+  }
+
 
   SetUrl() : void
   {
