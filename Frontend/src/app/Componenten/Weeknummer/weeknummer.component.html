@@ -1,4 +1,4 @@
-<div class="container" *ngIf="geladen">
+<div class="container">
 
     <div class="row">
         <h3>Weekoverzicht week [{{peilWeeknummer}}] jaar [{{peilJaar}}]</h3>
@@ -67,16 +67,3 @@
     </div>
 
 </div>
-
-<div class="spinner-border text-info" role="status" *ngIf="aanHetLaden">
-    <span class="sr-only">Loading...</span>
-</div>
-
-<script>
-    $('.datepicker').datepicker({
-  format: 'mm/dd/yyyy',
-  startDate: '-3d'
-})
-</script>
-
-

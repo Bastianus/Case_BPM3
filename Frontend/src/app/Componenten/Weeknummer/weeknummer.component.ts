@@ -11,8 +11,6 @@ import { WeeknummerService } from '../../Services/weeknummer.service'
   template: "<ejs-datepicker></ejs-datepicker>"
 })
 export class WeeknummerComponent implements OnInit {
-  public aanHetLaden: boolean = false;
-  public geladen : boolean = false;
   public peilWeeknummer: number;
   public peilJaar : number;
   public huidigeCursussen : any;
@@ -113,17 +111,10 @@ export class WeeknummerComponent implements OnInit {
 
   async SetCursussen() : Promise<void>
   {
-    this.aanHetLaden = true;
-    this.geladen = false;
-
     await this.cursusService.GetCursussenByWeekEnJaar(this.peilJaar, this.peilWeeknummer).subscribe(
       data => 
       {
         this.huidigeCursussen = data;
-      }
-    )
-    
-    this.geladen = true;
-    this.aanHetLaden = false;
+      })    
   }
 }
