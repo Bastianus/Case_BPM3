@@ -249,6 +249,10 @@
     <Compile Include="Migrations\202102031122011_database-legen-6.Designer.cs">
       <DependentUpon>202102031122011_database-legen-6.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202102051212436_database-legen-8.cs" />
+    <Compile Include="Migrations\202102051212436_database-legen-8.Designer.cs">
+      <DependentUpon>202102051212436_database-legen-8.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AntwoordOpPostCursus.cs" />
     <Compile Include="Models\CommCursus.cs" />
@@ -365,6 +369,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202102031122011_database-legen-6.resx">
       <DependentUpon>202102031122011_database-legen-6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102051212436_database-legen-8.resx">
+      <DependentUpon>202102051212436_database-legen-8.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
