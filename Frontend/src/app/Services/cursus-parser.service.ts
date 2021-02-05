@@ -109,7 +109,7 @@ export class CursusParserService {
         cursus.Naam = cursusstring.slice(2, indexCursusCode-1);
         cursus.CursusCode = cursusstring.slice(indexCursusCode+12, indexDuur-1);
         cursus.Duur = cursusstring.slice(indexDuur+6, indexStartdatum-1);
-        cursus.Startdatum = cursusstring.slice(indexStartdatum+12, cursusstring.length-3);
+        cursus.Startdatum = cursusstring.substr(indexStartdatum+12).trim();
 
         return cursus
     }
