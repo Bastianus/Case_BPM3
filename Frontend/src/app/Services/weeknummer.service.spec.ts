@@ -77,7 +77,7 @@ describe('WeeknummerService', () => {
   {
     let jaar = 2015;
     let weeknummer = 52;
-    let verwachtAntwoord = new Date(2015,11,28);
+    let verwachtAntwoord = new Date(2015,11,27);
 
     let antwoord = service.BepaalDatumByJaarEnWeeknummer(jaar, weeknummer);
 
@@ -86,5 +86,23 @@ describe('WeeknummerService', () => {
     expect(antwoord.getDate()).toBe(verwachtAntwoord.getDate());
   })
 
+  it("BepaalMaxWeeknummerByJaar geeft het juiste antwoord voor 2020", () =>
+  {
+    let jaar = 2020;
+    let verwachtAntwoord = 53;
 
+    let antwoord = service.BepaalMaxWeeknummerByJaar(jaar);
+
+    expect(antwoord).toBe(verwachtAntwoord);
+  })
+
+  it("BepaalMaxWeeknummerByJaar geeft het juiste antwoord voor 2016", () =>
+  {
+    let jaar = 2016;
+    let verwachtAntwoord = 52;
+
+    let antwoord = service.BepaalMaxWeeknummerByJaar(jaar);
+
+    expect(antwoord).toBe(verwachtAntwoord);
+  })
 });

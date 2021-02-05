@@ -9,9 +9,9 @@ Er wordt aangenomen dat het volgende al is geinstalleerd:
 
 Om de backend te starten:
 -   In de folder backend staat een backend solution. Open deze met Visual Studio, en wacht tot hij klaar is met laden.
--   build de solution (ctrl+shift+b of via het menu: build -> build solution)
 -   open een package manager console (via het menu: tools -> NuGet package manager -> package manager console)
-    In dit console,. run het volgende commando om de server op te zetten: update-database   
+    In dit console, run het volgende commando om roslyn te updaten: 
+    Update-Package Microsoft.CodeDom.Providers.DotNetCompilerPlatform -r  
 -   Bovenin staat IIS Express, met aan de rechterkant een drop down menu. Kies voor Chrome (compatabiliteit 
     met andere browsers is   niet getest).
 -   Druk op de knop IIS Express of druk op f5.
