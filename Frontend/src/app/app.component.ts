@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AppSettings } from './AppSettings';
 import { WeeknummerService } from './Services/weeknummer.service';
 
 @Component({
@@ -12,7 +14,7 @@ export class AppComponent {
   title = 'Cursussen app';
 
   constructor(private weeknummerService : WeeknummerService,
-    ) { }
+              private router : Router) { }
 
   ngOnInit() : void
   {
@@ -21,6 +23,8 @@ export class AppComponent {
     this.weeknummer = this.weeknummerService.BepaalWeeknummer(datumVanVandaag);
 
     this.jaar = datumVanVandaag.getFullYear();
+
+    this.GoToWeeknummer();
   }
 
   ngOnChanges() : void
@@ -30,5 +34,13 @@ export class AppComponent {
     this.weeknummer = this.weeknummerService.BepaalWeeknummer(datumVanVandaag);
 
     this.jaar = datumVanVandaag.getFullYear();
+
+    this.GoToWeeknummer();
+  }
+
+  GoToWeeknummer()
+  {
+    const Url = "/weeknummer/" + this.jaar + "/" + this.weeknummer;
+    this.router.navigateByUrl(Url);
   }
 }
