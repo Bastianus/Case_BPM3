@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AppSettings } from 'src/app/AppSettings';
 import { CursusService } from 'src/app/Services/cursus.service';
 import { WeeknummerService } from '../../Services/weeknummer.service'
 
@@ -17,6 +16,13 @@ export class WeeknummerComponent implements OnInit {
   public peilDatum: Date = new Date();
   public manualJaar : number;
   public manualWeeknummer : number;
+  public jaarMin : number = 1950;
+  public jaarMax : number = 2100;
+  public weeknummerMin : number = 1;
+  public weeknummerMax : number = 53;
+  public erZijnInputErrors : boolean = false;
+  public InputError : string;
+
 
   constructor(private weeknummerService: WeeknummerService,
               private cursusService : CursusService,
@@ -26,7 +32,7 @@ export class WeeknummerComponent implements OnInit {
   ngOnInit(): void 
   {    
     this.peilJaar = this.route.snapshot.params.jaar;   
-    this.peilWeeknummer = this.route.snapshot.params.weeknummer;       
+    this.peilWeeknummer = this.route.snapshot.params.weeknummer;   
   
     this.SetCursussen();
   }
@@ -69,32 +75,45 @@ export class WeeknummerComponent implements OnInit {
   JaarVerandert(event : any) : void
   {
     this.manualJaar = event.target.value;
+
+    this.SetMaxWeeknummer();    
   }
 
-  WeekVerandert(event:any) : void
+  WeekVerandert(event : any) : void
   {
-    let gevraagdWeeknummer = event.target.value;
+    this.manualWeeknummer = event.target.value;
 
-    let laatsteDagVanDitJaar = new Date(this.manualJaar, 11,31);
-    let maxWeeknummer = this.weeknummerService.BepaalWeeknummer(laatsteDagVanDitJaar);
-
-    if(gevraagdWeeknummer <= maxWeeknummer) this.manualWeeknummer = gevraagdWeeknummer;
-    else document.getElementById('commentaar').innerText = "Dit jaar heeft maar " + maxWeeknummer + " weken."
+    this.ManualSubmit();
   }
 
-  ManualSelect() : void
+  ManualSubmit() : void
   {
-    console.log("Jaar: " + this.manualJaar);
-    console.log("Weeknummer: " + this.manualWeeknummer);
+    this.erZijnInputErrors = false;
+    this.InputError = "";   
+
+    if(this.manualJaar < this.jaarMin) this.InputError = "Jaar moet tenminste " + this.jaarMin +" zijn.";
+    if(this.manualJaar > this.jaarMax) this.InputError = "Jaar mag maximaal " + this.jaarMax +" zijn.";
+
+    if(this.InputError.length < 1)
+    {
+      if(this.manualWeeknummer < this.weeknummerMin) this.InputError = "Weeknummer moet tenminste " + this.weeknummerMin + " zijn.";
+      if(this.manualWeeknummer > this.weeknummerMax) this.InputError = "Weeknummer mag maximaal " + this.weeknummerMax + " zijn.";
+    }    
+
+    if(this.InputError.length > 0)
+    {
+      this.erZijnInputErrors = true;
+    }
+    else
+    {    
     this.peilDatum = this.weeknummerService.BepaalDatumByJaarEnWeeknummer(this.manualJaar, this.manualWeeknummer)
-
-    console.log("peildatum: " + this.peilDatum);
 
     this.SetWeeknummerEnJaar();
 
     this.SetCursussen();
 
     this.SetUrl();
+    }
   }
 
 
@@ -116,5 +135,14 @@ export class WeeknummerComponent implements OnInit {
       {
         this.huidigeCursussen = data;
       })    
+  }
+
+  SetMaxWeeknummer() : number
+  {
+    let maxWeeknummer = this.weeknummerService.BepaalMaxWeeknummerByJaar(this.manualJaar);
+
+    this.weeknummerMax = maxWeeknummer;
+
+    return maxWeeknummer;
   }
 }

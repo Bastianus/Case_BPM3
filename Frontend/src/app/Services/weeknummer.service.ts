@@ -23,14 +23,24 @@ export class WeeknummerService {
 
   BepaalDatumByJaarEnWeeknummer(jaar : number, weeknummer : number) : Date
   {
-    const ticksPerDag = 1000*60*60*24;
-    let d=0;
-    do 
-    {
-      var start = new Date(jaar,0,1+d);
-      d++
-    } while(start.getDay() != 1)
+    const eersteDagVanHetJaar= new Date(jaar,0,1);
 
-    return new Date(start.getTime()+ticksPerDag*(weeknummer-1)*7);
+    const extraDagen = (weeknummer-1)*7+3;
+    const ticksPerDag = 1000*60*60*24;
+
+    return new Date(eersteDagVanHetJaar.getTime() + extraDagen * ticksPerDag);
+  }
+
+  BepaalMaxWeeknummerByJaar(jaar : number) : number
+  {
+    const laatsteDagVanHetJaar = new Date(jaar, 11, 31);
+
+    const weeknummerVanLaatsteDagVanHetJaar = this.BepaalWeeknummer(laatsteDagVanHetJaar);
+
+    const weekVoorLaatsteDagVanHetJaar = new Date(jaar, 11, 24);
+
+    const weeknummerVanWeekVoorLaatsteDagVanHetJaar = this.BepaalWeeknummer(weekVoorLaatsteDagVanHetJaar);
+
+    return Math.max(weeknummerVanLaatsteDagVanHetJaar, weeknummerVanWeekVoorLaatsteDagVanHetJaar);
   }
 }
